@@ -2,6 +2,23 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <title>Pitch Position Camera Feed</title>
+    <style>
+        #container {
+            margin: 0px auto;
+            width: 500px;
+            height: 375px;
+            border: 10px #333 solid
+        }
+        #videoElement {
+            width: 500px;
+            height: 375px;
+            background-color: #666;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    </style>
     <!-- Load TensorFlow.js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <!-- Load Posenet -->
@@ -9,23 +26,35 @@
 </head>
 
 <body>
-    <ul>
-        <li><a href='camera.html'>Pose Estimation - Camera feed demo</a></li>
-        <li><a href='coco.html'>Pose Estimation - Image demo</a></li>
-    </ul>
+    <div id="container">
+        <video autoplay="true" id="videoElement">
+
+        </video>
+    </div>
 </body>
 <script>
-    var flipHorizontal = false;
+  var video = document.querySelector("#videoElement");
 
-    var imageElement = document.getElementById('cat');
-
-    posenet.load().then(function(net) {
-      const pose = net.estimateSinglePose(imageElement, {
-        flipHorizontal: true
-      });
-      return pose;
-    }).then(function(pose){
-      console.log(pose);
+  if (navigator.mediaDevices.getUserMedia) {
+    //FIND WAY TO DO TO-VOICE 'ALLOW WEBCAM ACCESS'
+    navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
+      video.srcObject = stream;
     })
+    .catch(function (err0r) {
+      console.log("Something went wrong.");
+    });
+  }
+    // var flipHorizontal = false;
+
+    // var imageElement = document.getElementById('cat');
+
+    // posenet.load().then(function(net) {
+    //   const pose = net.estimateSinglePose(imageElement, {
+    //     flipHorizontal: true
+    //   });
+    //   return pose;
+    // }).then(function(pose){
+    //   console.log(pose);
+    // })
   </script>
 </html>
