@@ -27,34 +27,57 @@
 
 <body>
     <div id="container">
-        <video autoplay="true" id="videoElement">
-
-        </video>
+        <video autoplay="true" id="videoElement"></video>
+        <canvas  id="myCanvas" width="500" height="375"></canvas>
     </div>
 </body>
 <script>
   var video = document.querySelector("#videoElement");
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext('2d');
+
+  function speak(){
+    var msg = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();
+    msg.voic = voices[10];
+    msg.voiceURI = "native";
+    msg.volume = 1;
+    msg.rate = 1;
+    msg.pitch = 0.8;
+    msg.text = 'Please allow Pitch Position access to your camera.';
+    speechSynthesis.speak(msg);
+  }
+
+  speak();
 
   if (navigator.mediaDevices.getUserMedia) {
-    //FIND WAY TO DO TO-VOICE 'ALLOW WEBCAM ACCESS'
+    speak();
     navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
       video.srcObject = stream;
+      captureImage();
+      calculatePose();
     })
     .catch(function (err0r) {
       console.log("Something went wrong.");
     });
   }
-    // var flipHorizontal = false;
 
-    // var imageElement = document.getElementById('cat');
+  function captureImage() {
+    ctx.drawImage(video, 0, 0, canvas.Width, canvas.height);
+  }
 
-    // posenet.load().then(function(net) {
-    //   const pose = net.estimateSinglePose(imageElement, {
-    //     flipHorizontal: true
-    //   });
-    //   return pose;
-    // }).then(function(pose){
-    //   console.log(pose);
-    // })
+  var imageElement = document.getElementById("myCanvas");
+
+  function calculatePose() {
+    posenet.load().then(function(net) {
+    const pose = net.estimateSinglePose(imageElement, {
+      flipHorizontal: false
+      });
+    return pose;
+  }).then(function(pose){
+    console.log(pose);
+    })
+  }
+    
   </script>
 </html>
