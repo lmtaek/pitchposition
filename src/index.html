@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<meta charset="UTF-8">
+<meta name="description" content="A web-based game for making music with movement.">
+<meta name="keywords" content="Pitch, Position, movement, music">
+<meta name="author" content="Lauren Taekman">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <title>Pitch Position</title>
+    <h1 align="center" style="font-size:3vw">Pitch Position</h1>
+    <p align="center" style="font-size:1.5vw">Remember to allow Pitch Position access to your webcam!</p>
+    <style>
+        #container {
+            margin: 0px auto;
+            width: 500px;
+            height: 375px;
+            border: 10px #333 solid
+        }
+        #videoElement {
+            width: 500px;
+            height: 375px;
+            background-color: #666;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+        #myCanvas {
+          margin: 0px auto;
+          width: 500px;
+          height: 375px;
+          background-color: #000000;
+        }
+    </style>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Load Posenet -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+</head>
+
+<body>
+    <div id="container">
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+    <div id="temporaryContainer">
+      <canvas id="myCanvas">Canvas object meant to record images of player.</canvas>
+    </div>
+    <script type="text/javascript" src="cameraAccessReminder.js"> speak(); </script>
+    <script type="text/javascript">
+      var video = document.querySelector("#videoElement");
+      var canvas = document.getElementById("myCanvas");
+    
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
+          video.srcObject = stream;
+          
+          var currentImage = captureImage(video);
+          var currentPose = calculatePose(currentImage);
+            console.log(currentPose);
+            if (currentPose != null) {
+              console.log(currentPose.keypoints);
+          }
+          /*
+          setTimeout(function() {
+              while (video != null) {keepWatching();}
+            }, 1000)*/
+      })
+        .catch(function (err0r) {
+          alert("Something went wrong with the Camera feed.\nRefresh the page and make sure Pitch Perfect has access to your webcam.");
+        });
+      }
+
+      function keepWatching() {
+        if (video != null) {
+          captureImage(video);
+          console.log(calculatePose());
+          //keepWatching();
+        }
+      }
+    
+      function captureImage(videoFeed) {
+        if ((videoFeed != null) && (canvas.getContext)) {
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          return ctx;
+        } else { 
+          alert("Oops! Something went wrong with the Camera feed.\nRefresh the page and try again.");
+      }
+      }
+    
+      //var imageElement = document.getElementById("myCanvas");
+    
+      function calculatePose(canvasElement) {
+        posenet.load().then(function(net) {
+        const pose = net.estimateSinglePose(canvasElement, {
+          flipHorizontal: true
+          });
+        return pose;
+      }).then(function(pose){
+        console.log(pose);
+        })
+      }
+        
+    </script>
+</body>
+</html>
