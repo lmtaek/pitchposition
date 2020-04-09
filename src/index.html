@@ -52,34 +52,36 @@
     </div>
     <script type="text/javascript" src="cameraAccessReminder.js"> speak(); </script>
     <script type="text/javascript">
-      const video = document.querySelector("#videoElement");
+      const video = document.getElementById("videoElement");
       const canvas = document.getElementById("myCanvas");
       const snap = document.getElementById("snap");
+
 
       async function init() {
         if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
           window.stream = stream;
           video.srcObject = stream;
-          handleSuccess();
+          video.addEventListener("play", function() { 
+            timerCallback();}, false);
           })
         .catch(function (err0r) {
           alert("Something went wrong with the Camera feed.\nRefresh the page and make sure Pitch Perfect has access to your webcam.");
         });
       }
+    }
 
-      }
-
-      function handleSuccess() {
-        captureImage();
-        //captureImage();
-        /*var currentImage = captureImage(video);
-        var currentPose = calculatePose(currentImage);
-            console.log(currentPose);
-            if (currentPose != null) {
-              console.log(currentPose.keypoints);
-          }*/
-      }
+function timerCallback () {  
+    if (video.paused || video.ended) {  
+      return;  
+    }  
+    captureImage();
+    calculatePose();
+      
+    setTimeout(function () {  
+      timerCallback();  
+    }, 16); // roughly 60 frames per second  
+  }
     
     
     /*
@@ -94,23 +96,23 @@
       } */
 
       function captureImage() {
-        console.log("this function gets called");
+        //console.log("this function gets called");
         var context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
       }
 
 
-      var context = canvas.getContext('2d');
+      
+      //var context = canvas.getContext('2d');
       snap.addEventListener("click", function() {
+        var context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         calculatePose();
       })
     
-      //var imageElement = document.getElementById("myCanvas");
-    
       function calculatePose() {
         posenet.load().then(function(net) {
-        const pose = net.estimateSinglePose(video, {
+        const pose = net.estimateSinglePose(canvas, {
           flipHorizontal: true
           });
         return pose;
@@ -119,6 +121,7 @@
         })
       }
 
+      //processor.doLoad();
       init();
         
     </script>
