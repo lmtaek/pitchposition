@@ -55,6 +55,11 @@
       const video = document.getElementById("videoElement");
       const canvas = document.getElementById("myCanvas");
       const snap = document.getElementById("snap");
+      var rightArmPos;
+      var leftArmPos;
+      var headPos;
+      var rightHandPos;
+      var leftHandPos;
 
 
       async function init() {
@@ -76,11 +81,10 @@ function timerCallback () {
       return;  
     }  
     captureImage();
-    calculatePose();
-      
+    calculatePose();  
     setTimeout(function () {  
       timerCallback();  
-    }, 16); // roughly 60 frames per second  
+    }, 64); // roughly 60 frames per second  
   }
     
     
@@ -118,6 +122,12 @@ function timerCallback () {
         return pose;
       }).then(function(pose){
         console.log(pose);
+        console.log(pose.keypoints[2].position) 
+        rightArmPos = pose.keypoints[8];
+        leftArmPos = pose.keypoints[7];
+        headPos = pose.keypoints[0];
+        rightHandPos = pose.keypoints[10];
+        leftHandPos = pose.keypoints[9];
         })
       }
 
