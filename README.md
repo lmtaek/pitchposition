@@ -1,7 +1,7 @@
 # Pitch Position
  A browser-based application that uses motion detection to dynamically produce music.
  
- Click here to begin a demo of Pitch Position, or click the link at the top of the README.md file.
+ Click here to begin a demo of Pitch Position.
  - You can reference the Getting Started/Using Pitch Position section for help in using Pitch Position.
  - LINK TO BE ADDED.
  
