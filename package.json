@@ -1,0 +1,24 @@
+{
+  "name": "produce-sound",
+  "version": "1.0.3",
+  "description": "takes in data and returns a sound based on said data",
+  "main": "produceSound.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmtaek/pitchposition.git"
+  },
+  "keywords": [
+    "sound"
+  ],
+  "author": "lmtaek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lmtaek/pitchposition/issues"
+  },
+  "homepage": "https://github.com/lmtaek/pitchposition#readme"
+}

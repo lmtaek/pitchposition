@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<meta charset="UTF-8">
+<meta name="description" content="A web-based game for making music with movement.">
+<meta name="keywords" content="Pitch, Position, movement, music">
+<meta name="author" content="Lauren Taekman">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8">
+    <title>Pitch Position</title>
+    <h1 align="center" style="font-size:3vw">Pitch Position</h1>
+    <p align="center" style="font-size:1.5vw">Remember to allow Pitch Position access to your webcam!</p>
+    <style>
+        #videoElement {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+            width: 500px;
+            height: 375px;
+            background-color: #666;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+        #myCanvas {
+          margin: 0px auto;
+          width: 500px;
+          height: 375px;
+          display: none;
+        }
+    </style>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Load Posenet -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+    <!-- Load reminder to enable camera permissions -->
+    <script src="cameraAccessReminder.js"></script>
+    <!-- Load script for producing sound output -->
+    <script src="produceSound.js" type="module"></script>
+</head>
+
+<body>
+    <div id="container">
+        <video autoplay="true" id="videoElement" style="max-width:100%; height:auto;"></video>
+    </div>
+    <div id="controller">
+      <canvas id="myCanvas"></canvas>
+    </div>
+    <script src="main.js"type="module">
+       </script>
+</body>
+</html>
