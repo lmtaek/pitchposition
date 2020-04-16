@@ -1,15 +1,18 @@
-import * as Tone from "./tone.js";
-//import Synth from 'Tone/instrument/Monosynth';
+//import * as Tone from "./tone.js";
 
-/*
-console.log("this is working");
-const synth = new Tone.MonoSyth().toMaster();
-synth.triggerAttackRelease("C4", "8n");
-*/
+var mainSynth = new Tone.MonoSynth().toMaster();
+var tempo = new Tone.Loop(function(time) {
+  mainSynth.triggerAttackRelease("C4", "8n")
+}, "4n").start(0);
 
 export function trial() {
-  const synth = new Tone.MonoSynth().toMaster();
-
-//play a middle 'C' for the duration of an 8th note
-synth.triggerAttackRelease("C4", "8n");
+  let synth = new Tone.MonoSynth().toMaster();
+  //let synth = new Tone.Synth().toMaster();
+  synth.triggerAttackRelease("C4", "8n");
+  //Tone.Transport.start();
+  
 }
+
+
+
+

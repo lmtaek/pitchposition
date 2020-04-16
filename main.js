@@ -2,7 +2,8 @@ import {trial} from './produceSound.js'
 
 const video = document.getElementById("videoElement");
       const canvas = document.getElementById("myCanvas");
-      const snap = document.getElementById("snap");
+      var context = canvas.getContext('2d');
+      //var pose;
       var currentPose;
       var rightArmPos;
       var leftArmPos;
@@ -16,6 +17,10 @@ const video = document.getElementById("videoElement");
           window.stream = stream;
           video.srcObject = stream;
           video.addEventListener("play", function() {
+            var context = new AudioContext()
+            context.resume()
+            Tone.start()
+            trial()
             timerCallback();}, false);
           })
         .catch(function (err0r) {
@@ -32,7 +37,6 @@ function timerCallback () {
     }  
     captureImage();
     calculatePose();
-    trial();
     //console.log("right hand: " + rightHandPos); 
     setTimeout(function () {  
       timerCallback();  
@@ -40,16 +44,19 @@ function timerCallback () {
   }
 
       function captureImage() {
-        var context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
       }
-    
+
       function calculatePose() {
         posenet.load().then(function(net) {
-        const pose = net.estimateSinglePose(canvas, {
+        var pose = net.estimateSinglePose(canvas, {
           flipHorizontal: true
           });
           currentPose = pose;
+
+          // used to keep the number of tensors minimized--if removed, will experience a memory leak
+          net.dispose();
+
         return currentPose;
       }).then(function(pose){
         rightArmPos = [pose.keypoints[8].position.x, pose.keypoints[8].position.y];
@@ -58,6 +65,7 @@ function timerCallback () {
         rightHandPos = [pose.keypoints[10].position.x, pose.keypoints[10].position.y]
         leftHandPos = [pose.keypoints[9].position.x, pose.keypoints[9].position.y]
         })
+        console.log(tf.memory())
       }
 
       init();

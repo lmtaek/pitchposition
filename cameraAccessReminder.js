@@ -13,14 +13,3 @@
       alert("Please allow Pitch Position access to your camera.");
     }
   }
-  
-  /*
-  function hello() {
-    var msg = new SpeechSynthesisUtterance();
-    try {
-      msg.text = "Howdy, partner."
-      speechSynthesis.speak(msg);
-    } catch (error) {
-      console.log("oops")
-    }
-  }*/
