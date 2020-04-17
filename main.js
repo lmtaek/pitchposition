@@ -1,4 +1,4 @@
-import {trial, songSetUp, determineSound} from './produceSound.js'
+import {songSetUp, determineSound} from './produceSound.js'
 
 const video = document.getElementById("videoElement");
       const canvas = document.getElementById("myCanvas");
@@ -19,8 +19,6 @@ const video = document.getElementById("videoElement");
           video.addEventListener("play", function() {
             var audioContext = new AudioContext()
             audioContext.resume()
-            //Tone.start()
-            //trial()
             songSetUp();
             timerCallback();}, false);
           })
@@ -39,8 +37,6 @@ function timerCallback () {
     captureImage();
     calculatePose();
     determineSound(position);
-    //console.log("right hand: " + rightHandPos); 
-    //console.log("position: " + position)
     setTimeout(function () {  
       timerCallback();  
     }, 64); 
@@ -69,7 +65,6 @@ function timerCallback () {
         leftHandPos = [pose.keypoints[9].position.x, pose.keypoints[9].position.y]
         
         position = [rightArmPos, leftArmPos, headPos, rightHandPos, leftHandPos]
-        //console.log(position[0]);
         })
         //console.log(tf.memory())
       }
