@@ -1,15 +1,15 @@
-import {trial} from './produceSound.js'
+import {trial, songSetUp, determineSound} from './produceSound.js'
 
 const video = document.getElementById("videoElement");
       const canvas = document.getElementById("myCanvas");
       var context = canvas.getContext('2d');
-      //var pose;
       var currentPose;
       var rightArmPos;
       var leftArmPos;
       var headPos;
       var rightHandPos;
       var leftHandPos;
+      var position;
 
       async function init() {
         if (navigator.mediaDevices.getUserMedia) {
@@ -17,10 +17,11 @@ const video = document.getElementById("videoElement");
           window.stream = stream;
           video.srcObject = stream;
           video.addEventListener("play", function() {
-            var context = new AudioContext()
-            context.resume()
-            Tone.start()
-            trial()
+            var audioContext = new AudioContext()
+            audioContext.resume()
+            //Tone.start()
+            //trial()
+            songSetUp();
             timerCallback();}, false);
           })
         .catch(function (err0r) {
@@ -37,7 +38,9 @@ function timerCallback () {
     }  
     captureImage();
     calculatePose();
+    determineSound(position);
     //console.log("right hand: " + rightHandPos); 
+    //console.log("position: " + position)
     setTimeout(function () {  
       timerCallback();  
     }, 64); 
@@ -64,8 +67,11 @@ function timerCallback () {
         headPos = [pose.keypoints[0].position.x, pose.keypoints[0].position.y]
         rightHandPos = [pose.keypoints[10].position.x, pose.keypoints[10].position.y]
         leftHandPos = [pose.keypoints[9].position.x, pose.keypoints[9].position.y]
+        
+        position = [rightArmPos, leftArmPos, headPos, rightHandPos, leftHandPos]
+        //console.log(position[0]);
         })
-        console.log(tf.memory())
+        //console.log(tf.memory())
       }
 
       init();
