@@ -2,6 +2,8 @@
 
 var loopBeat;
 var loopBeatInterval = "16n";
+var shouldMute = false;
+var toneStarted = true;
 
 var rightOctave; //determined by right hand's X value
 var rightNote; //determined by right hand's Y value
@@ -22,10 +24,18 @@ export function songSetUp() {
   rightOutput = new Tone.Synth().toMaster();
   leftOutput = new Tone.Synth().toMaster();
   //song = the musical component
-  //time Interval = updating rate for song, the framerate, seconds or relative to beats per min ('4n' for quarter note)
+  //time Interval = updating rate for song, the framerate, seconds or relative to beats per min
   loopBeat = new Tone.Loop(song, loopBeatInterval);
   Tone.Transport.start();
   loopBeat.start(0);
+}
+
+export function pauseMusic() {
+  Tone.Transport.pause();
+}
+
+export function startMusic() {
+  Tone.Transport.start();
 }
 
 function song(time) {

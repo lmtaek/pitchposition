@@ -1,8 +1,11 @@
-import {songSetUp, determineSound} from './produceSound.js'
+import {songSetUp, determineSound, pauseMusic, startMusic} from './produceSound.js'
 
 const video = document.getElementById("videoElement");
       const canvas = document.getElementById("myCanvas");
       var context = canvas.getContext('2d');
+      var pauseButton = document.getElementById("pauseButton");
+      var startButton = document.getElementById("startButton");
+
       var currentPose;
       var rightArmPos;
       var leftArmPos;
@@ -70,5 +73,13 @@ function timerCallback () {
       }
 
       init();
+      pauseButton.addEventListener("click", function() { 
+        console.log("Music paused.")
+        pauseMusic();
+      });
+      startButton.addEventListener("click", function() {
+        console.log("Music resumed.")
+        startMusic()
+      });
         
    

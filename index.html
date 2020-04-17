@@ -9,8 +9,8 @@
 <head>
     <meta charset="utf-8">
     <title>Pitch Position</title>
-    <h1 align="center" style="font-size:3vw">Pitch Position</h1>
-    <p align="center" style="font-size:1.5vw">Remember to allow Pitch Position access to your webcam!</p>
+    <h1 align="center" style="font-size:4vw">Pitch Position</h1>
+    <p align="center" style="font-size:2vw">Remember to allow Pitch Position access to your webcam!</p>
     <style>
         #videoElement {
           display: block;
@@ -41,8 +41,11 @@
 </head>
 
 <body>
-    <div id="container">
-        <video autoplay="true" id="videoElement" style="max-width:100%; height:auto;"></video>
+    <div id="container" align="center">
+      <button id="pauseButton" type="button" align="center" style="max-width:100%; height:auto;">Stop music.</button>
+      <button id="startButton" type="button" align="center" style="max-width:100%; height:auto;">Start music.</button>
+      <p></p>  
+      <video autoplay="true" id="videoElement" style="max-width:100%; height:auto;"></video>
     </div>
     <div id="controller">
       <canvas id="myCanvas"></canvas>
