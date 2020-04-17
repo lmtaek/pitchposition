@@ -15,16 +15,22 @@ var loopBeat; //determined by head position
 
 var rightOctave; //determined by right hand's X value
 var rightNote; //determined by right hand's Y value
-var rightSound; //combination of octave and note
+var rightSound = "C0"; //combination of octave and note
+var rightVolume = 0; //determined by right arm's Y value
+var rightOutput;
 
 var leftOctave; //determined by left hand's X value
 var leftNote; //determined by left hand's Y value
-var leftSound; //combination of octave and note
+var leftSound = "C0"; //combination of octave and note
+var leftVolume = 0; //determined by left arm's Y value
+var leftOutput;
 
 export function songSetUp() {
   Tone.start()
 
   duoSynth = new Tone.DuoSynth().toMaster();
+  rightOutput = new Tone.Synth().toMaster();
+  leftOutput = new Tone.Synth().toMaster();
   //song = the musical component
   //time Interval = updating rate for song, the framerate, seconds or relative to beats per min ('4n' for quarter note)
   loopBeat = new Tone.Loop(song, '4n');
@@ -33,20 +39,18 @@ export function songSetUp() {
 }
 
 function song(time) {
+  if (rightVolume != undefined) {
+    rightOutput.volume.value = rightVolume;
+    rightOutput.triggerAttackRelease(rightSound, '6n', time);
+  } else {
+    rightOutput.volume.value = 0;
+    rightOutput.triggerAttackRelease(rightSound, '6n', time);
+  }
+  //duoSynth.volume.value = 0;
   //duoSynth.triggerAttackRelease('c4', '6n', time);
   //console.log(time);
 }
 
-export function trial() {
-  let synth = new Tone.DuoSynth().toMaster();
-  //let synth = new Tone.Synth().toMaster();
-  synth.triggerAttackRelease("C4", "8n");
-  
-  //Tone.Transport.start();
-  
-}
-
-//functioning as voice1 in the DuoSynth
 function handleRightHand(rightHand) {
   if (rightHand != undefined) {
 
@@ -109,7 +113,6 @@ function handleRightHand(rightHand) {
         break;
     }
     rightSound = rightNote + rightOctave;
-    console.log(rightSound);
   }
 
 }
@@ -176,21 +179,66 @@ function handleLeftHand(leftHand) {
         break;
     }
     leftSound = leftNote + leftOctave;
-    //console.log(leftSound);
   }
-
-
 }
 
 function handleHead() {
 
 }
 
-function handleRightArm() {
+function handleRightArm(rightArm) {
+  if (rightArm != null) {
+    //console.log(rightArm);
+    var yCoordinate = rightArm[1];
 
-}
+    switch (true) {
+      case (yCoordinate <= 50):
+        rightVolume = 10;
+        break;
+      case (yCoordinate <= 70):
+        rightVolume = 5;
+        break;
+      case (yCoordinate <= 90):
+        rightVolume = 0;
+        break;
+      case (yCoordinate <= 110):
+        rightVolume = -5;
+        break;
+      case (yCoordinate >= 130):
+        rightVolume = -10;
+        break;
+      default:
+        rightVolume = 0;
+        break;
+      }
+    }
+  }
 
 function handleLeftArm() {
+  if (leftArm != null) {
+    var yCoordinate = rightArm[1];
+
+    switch (true) {
+      case (yCoordinate <= 50):
+        leftVolume = 10;
+        break;
+      case (yCoordinate <= 70):
+        leftVolume = 5;
+        break;
+      case (yCoordinate <= 90):
+        leftVolume = 0;
+        break;
+      case (yCoordinate <= 110):
+        leftVolume = -5;
+        break;
+      case (yCoordinate >= 130):
+        leftVolume = -10;
+        break;
+      default:
+        leftVolume = 0;
+        break;
+      }
+    }
 
 }
 
@@ -204,6 +252,8 @@ export function determineSound(position) {
 
     handleRightHand(rightHand);
     handleLeftHand(leftHand);
+    handleRightArm(rightArm);
+    handleLeftArm(leftArm);
   }
 }
 
