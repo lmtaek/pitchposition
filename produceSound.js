@@ -26,7 +26,7 @@ export function songSetUp() {
   //song = the musical component
   //time Interval = updating rate for song, the framerate, seconds or relative to beats per min
   loopBeat = new Tone.Loop(song, loopBeatInterval);
-  Tone.Transport.start();
+  //Tone.Transport.start();
   loopBeat.start(0);
 }
 
@@ -82,27 +82,27 @@ function handleRightHand(rightHand) {
       case (xCoordinate <= 0):
         rightOctave = '1';
         break;
-      case (xCoordinate <= 40):
+      case (xCoordinate <= 50):
         rightOctave = '2';
         break;
-      case (xCoordinate <= 80):
+      case (xCoordinate <= 100):
         rightOctave = '3';
         break;
-      case (xCoordinate <= 120):
+      case (xCoordinate <= 150):
         rightOctave = '4';
         break;
-      case (xCoordinate <= 160):
+      case (xCoordinate <= 200):
         rightOctave = '5';
         break;
-      case (xCoordinate <= 200):
+      case (xCoordinate <= 250):
         rightOctave = '6';
         break;
-      case (xCoordinate <= 240):
+      case (xCoordinate <= 300):
         rightOctave = '7'
         break;
-      case (xCoordinate <= 300):
+      /*case (xCoordinate <= 300):
         rightOctave = '8'
-        break;
+        break;*/
       default:
         rightOctave = '4';
         break;
@@ -148,27 +148,27 @@ function handleLeftHand(leftHand) {
       case (xCoordinate <= 0):
         leftOctave = '1';
         break;
-      case (xCoordinate <= 40):
+      case (xCoordinate <= 50):
         leftOctave = '2';
         break;
-      case (xCoordinate <= 80):
+      case (xCoordinate <= 100):
         leftOctave = '3';
         break;
-      case (xCoordinate <= 120):
+      case (xCoordinate <= 150):
         leftOctave = '4';
         break;
-      case (xCoordinate <= 160):
+      case (xCoordinate <= 200):
         leftOctave = '5';
         break;
-      case (xCoordinate <= 200):
+      case (xCoordinate <= 250):
         leftOctave = '6';
         break;
-      case (xCoordinate <= 240):
+      case (xCoordinate <= 300):
         leftOctave = '7'
         break;
-      case (xCoordinate <= 300):
+      /*case (xCoordinate <= 300):
         leftOctave = '8'
-        break;
+        break;*/
       default:
         leftOctave = '4';
         break;

@@ -73,13 +73,11 @@ function timerCallback () {
       }
 
       init();
-      pauseButton.addEventListener("click", function() { 
-        console.log("Music paused.")
+      pauseButton.addEventListener("click", function() {
         pauseMusic();
       });
       startButton.addEventListener("click", function() {
-        console.log("Music resumed.")
-        startMusic()
+        startMusic();
       });
         
    
