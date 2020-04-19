@@ -2,8 +2,6 @@
 
 var loopBeat;
 var loopBeatInterval = "16n";
-var shouldMute = false;
-var toneStarted = true;
 
 var rightOctave; //determined by right hand's X value
 var rightNote; //determined by right hand's Y value
@@ -21,8 +19,8 @@ var leftOutput;
 
 export function songSetUp() {
   Tone.start()
-  rightOutput = new Tone.Synth().toMaster();
-  leftOutput = new Tone.Synth().toMaster();
+  rightOutput = new Tone.AMSynth().toMaster();
+  leftOutput = new Tone.DuoSynth().toMaster();
   //song = the musical component
   //time Interval = updating rate for song, the framerate, seconds or relative to beats per min
   loopBeat = new Tone.Loop(song, loopBeatInterval);
@@ -100,9 +98,6 @@ function handleRightHand(rightHand) {
       case (xCoordinate <= 300):
         rightOctave = '7'
         break;
-      /*case (xCoordinate <= 300):
-        rightOctave = '8'
-        break;*/
       default:
         rightOctave = '4';
         break;
@@ -166,9 +161,6 @@ function handleLeftHand(leftHand) {
       case (xCoordinate <= 300):
         leftOctave = '7'
         break;
-      /*case (xCoordinate <= 300):
-        leftOctave = '8'
-        break;*/
       default:
         leftOctave = '4';
         break;
