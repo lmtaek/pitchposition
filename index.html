@@ -9,8 +9,8 @@
 <head role="main" aria-labelledby="control buttons">
     <meta charset="utf-8">
     <title>Pitch Position</title>
-    <h1 align="center" style="font-size:4vw; font-family:verdana">Pitch Position</h1>
-    <p align="center" style="font-size:2vw; font-family:verdana">Remember to allow Pitch Position access to your webcam!</p>
+    <h1 align="center" style="font-size:4vw; font-family:verdana; color:white ">Pitch Position</h1>
+    <p align="center" style="font-size:2vw; font-family:verdana; color:white">Remember to allow Pitch Position access to your webcam!</p>
     <p align="center" id="control buttons">
       <button id="startButton" type="button" align="center" style="max-width:100%; height:auto; font-size:2vw; font-family:verdana">Start sound.</button> 
       <button id="pauseButton" type="button" align="center" style="max-width:100%; height:auto; font-size:2vw; font-family:verdana">Stop sound.</button></p>
@@ -43,10 +43,11 @@
     <script src="produceSound.js" type="module"></script>
 </head>
 
-<body role="main" aria-labelledby="videoElement">
+<body role="main" aria-labelledby="videoElement" bgcolor=#000000>
     <div id="container" align="center">
       <video autoplay="true" id="videoElement" style="max-width:100%; height:auto;">
-      <p>The video feed is not supported by your browser.</p></video>
+      <p style="font-family:verdana; color:white">The video feed is not supported by your browser.</p>
+    </video>
     </div>
     <div id="controller">
       <canvas id="myCanvas"></canvas>
