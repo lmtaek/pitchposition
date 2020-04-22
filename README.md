@@ -1,7 +1,7 @@
 # Pitch Position
  A browser-based application that uses motion detection to dynamically produce sound. 
  
- Pitch Position was created as a motivator to get people up and moving while expressing themselves creatively. It is meant to be user-friendly to people with visual impairments; the webcam video display is an additional feature that does not impact the functionality of Pitch Position. 
+ Pitch Position was created as a motivator to get people up and moving while expressing themselves creatively. It is meant to be user-friendly to people with visual impairments; the webcam video display is an additional feature that does not impact the functionality of Pitch Position, however **your laptop must have access to a webcam in order to use Pitch Position**. 
  
  [Click here to begin a demo of Pitch Position.](https://lmtaek.github.io/pitchposition/)
  - You can reference the Getting Started/Using Pitch Position section for help in using Pitch Position.
