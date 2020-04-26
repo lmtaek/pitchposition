@@ -1,5 +1,7 @@
 # Pitch Position
- A browser-based application that uses motion detection to dynamically produce sound.
+ A browser-based application that uses motion detection to dynamically produce sound. 
+ 
+ Pitch Position was created as a motivator to get people up and moving while expressing themselves creatively. It is meant to be user-friendly to people with visual impairments; the webcam video display is an additional feature that does not impact the functionality of Pitch Position, however **your laptop must have access to a webcam in order to use Pitch Position**. 
  
  [Click here to begin a demo of Pitch Position.](https://lmtaek.github.io/pitchposition/)
  - You can reference the Getting Started/Using Pitch Position section for help in using Pitch Position.
@@ -10,7 +12,7 @@
  ## Getting Started/Using Pitch Position
  - Click link to the project demo at the top of the README.md page. 
  - Allow Pitch Position to load. 
- - Allow Pitch Position permissions to your webcam. If you deny it permissions, the application will not have the information necessary to produce any sound. You can refresh the page, and approve camera permissions if you originally declined these permissions.
+ - Allow Pitch Position permissions to your webcam. If you deny it permissions, the application will not have the information necessary to produce any sound. If you originally denied camera permissions to Pitch Position, click the camera icon to the far right of the URL bar. In the dropdown menu, click "Always allow https://lmtaek.github.io/pitchposition/ to access to your camera" and refresh the page. 
  - Make sure you are in a place with room to move around. At minimum, you should be able to wave your arms freely. Pitch Position will be more interesting if you can also crouch or stand at full-height.
  - Set your volume to a MODERATE VALUE (halfway works best). You can adjust your volume after sound starts to play.
  - When you are ready to use Pitch Position, click the "Start sound." button. Sound will begin to be generated. It may not sound good at first.
