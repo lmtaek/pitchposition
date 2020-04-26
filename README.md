@@ -15,12 +15,12 @@
  - Allow Pitch Position permissions to your webcam. If you deny it permissions, the application will not have the information necessary to produce any sound. If you originally denied camera permissions to Pitch Position, click the camera icon to the far right of the URL bar. In the dropdown menu, click "Always allow https://lmtaek.github.io/pitchposition/ to access to your camera" and refresh the page. 
  - Make sure you are in a place with room to move around. At minimum, you should be able to wave your arms freely. Pitch Position will be more interesting if you can also crouch or stand at full-height.
  - Set your volume to a MODERATE VALUE (halfway works best). You can adjust your volume after sound starts to play.
- - When you are ready to use Pitch Position, click the "Start sound." button. Sound will begin to be generated. It may not sound good at first.
+ - When you are ready to use Pitch Position, either click the "Start sound." button, or hit the spacebar. Sound will begin to be generated. It may not sound good at first.
  - Stand up if you are seated, and take a few steps backwards from your computer. Pitch Position is trying to find your features.
  - Pitch Position will begin to alter its sound output based on the position of your arms and head.
  - Move around! Pitch Position will change its sound output depending on how you position your hands, arms, and head.
  - Not all of Pitch Position's outputs will sound good. Try moving around and seeing if you can find positions that produce nice sounds!
- - If you would like to take a break, walk back to your computer and click the "Stop sound." button to pause the audio output. You can click the "Start sound." button to resume the audio output when you're ready to continue.
+ - If you would like to take a break, walk back to your computer and click the "Stop sound." button, or hit the spacebar to pause the audio output. You can click the "Start sound." button or hit the spacebar to resume the audio output when you're ready to continue.
  - When you are done, you can close out of the web page.
  
  ## Details (bonus information)
