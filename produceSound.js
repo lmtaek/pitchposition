@@ -1,5 +1,7 @@
 //import * as Tone from "./tone.js";
 
+var isMusicPlaying = false;
+
 var loopBeat;
 var loopBeatInterval = "16n";
 
@@ -30,10 +32,16 @@ export function songSetUp() {
 
 export function pauseMusic() {
   Tone.Transport.pause();
+  isMusicPlaying = false;
 }
 
 export function startMusic() {
   Tone.Transport.start();
+  isMusicPlaying = true;
+}
+
+export function checkMusicPlaying() {
+  return isMusicPlaying;
 }
 
 function song(time) {

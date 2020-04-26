@@ -1,4 +1,4 @@
-import {songSetUp, determineSound, pauseMusic, startMusic} from './produceSound.js'
+import {songSetUp, determineSound, pauseMusic, startMusic, checkMusicPlaying} from './produceSound.js'
 
 const video = document.getElementById("videoElement");
       const canvas = document.getElementById("myCanvas");
@@ -79,5 +79,18 @@ function timerCallback () {
       startButton.addEventListener("click", function() {
         startMusic();
       });
+      document.addEventListener('keyup', function(event) {
+        if (event.keyCode == 32) {
+          let musicCheck = checkMusicPlaying();
+          switch (musicCheck) {
+            case true:
+              pauseMusic();
+              break;
+            case false:
+              startMusic();
+              break;
+          }
+        }
+      })
         
    
